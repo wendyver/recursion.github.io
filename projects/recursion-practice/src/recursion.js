@@ -122,10 +122,32 @@ var powerOfTwo = function(n) {
 
 // 9. Write a function that accepts a string a reverses it.
 var reverse = function(string) {
+  // base case
+  if (string.length === 0) {
+    return "";
+  }
+  // recursive case - return the last character of the string, concatenated
+  // with the result of reversing the rest of the string
+  return string[string.length - 1] + reverse(string.slice(0, -1))
+
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+    // remove spaces from string
+    var spacelessString = string.replace(/\s/g, "")
+  // base case - if string is empty, or has only 1 letter, it's a palindrome
+  if (spacelessString.length <= 1) {
+    return true;
+  }
+  // recursive case - compare the first and last letters of the string
+  // if they are equal, recursively check the substring, without the first and last characters
+  // if not equal, return false
+  if (spacelessString[0].toLowerCase() === spacelessString[spacelessString.length - 1].toLowerCase()) {
+    return palindrome(spacelessString.slice(1, -1));
+  } else {
+    return false;
+  }
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
