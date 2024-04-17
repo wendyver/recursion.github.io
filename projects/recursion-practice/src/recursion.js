@@ -162,6 +162,13 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+  if (y === 0) {
+    return 0;
+  } else if (y > 0) {
+    return x + multiply(x, y - 1);
+  } else {
+    return -multiply(x, -y);
+  }
 };
 
 // 13. Write a function that divides two numbers without using the / operator  or
@@ -182,7 +189,20 @@ var gcd = function(x, y) {
 // compareStr('house', 'houses') // false
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
-var compareStr = function(str1, str2) {
+var compareStr = function(str1, str2, index = 0) {
+  // base case: if both strings have been gone through
+  if (index === str1.length && index === str2.length) {
+    return true;
+  }
+  // base case: if lengths of strings are different
+  if (index === str1.length || index === str2.length) {
+    return false;
+  }
+  // if characters at current index are not equal, return false
+  if (str1[index] !== str2[index]) {
+    return false;
+  }
+  return compareStr(str1, str2, index + 1);
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
