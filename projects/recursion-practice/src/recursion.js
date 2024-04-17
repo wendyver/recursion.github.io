@@ -162,6 +162,7 @@ var modulo = function(x, y) {
 // JavaScript's Math object.
 // ATTENTION DO NOT LEAVE COMMENTS IN THIS FUNCTION. The test is looking for any ('/').
 var multiply = function(x, y) {
+
   if (y === 0) {
     return 0;
   } else if (y > 0) {
@@ -190,54 +191,42 @@ var gcd = function(x, y) {
 // compareStr('', '') // true
 // compareStr('tomato', 'tomato') // true
 var compareStr = function(str1, str2, index = 0) {
-  // base case: if both strings have been gone through
+  // Base case: if both strings have been traversed completely
   if (index === str1.length && index === str2.length) {
-    return true;
+      return true;
   }
-  // base case: if lengths of strings are different
+  // Base case: if lengths of strings are different
   if (index === str1.length || index === str2.length) {
-    return false;
+      return false;
   }
-  // if characters at current index are not equal, return false
+  // If characters at current index are not equal, return false
   if (str1[index] !== str2[index]) {
-    return false;
+      return false;
   }
+  // Recursively check the next characters
   return compareStr(str1, str2, index + 1);
 };
 
 // 16. Write a function that accepts a string and creates an array where each letter
 // occupies an index of the array.
-var createArray = function(str, index = 0){
-  // base case: if index is greater than or equal to string length, return empty array
+var createArray = function(str, index = 0) {
+  // base case: if index exceeds the length of the string
   if (index >= str.length) {
     return [];
   }
-  // recursive case: create an array with the current charater and 
-  // recursively call create array for the remaining characters
-  return [str[index]].concat(createArray(str, index + 1));
-};
+  // recursive case: create an array with the current character and 
+  // recursively call createArray for the remaining characters
+  return [str[index]].concat(createArray(str, index + 1))
+}
 
 // 17. Reverse the order of an array
 var reverseArr = function (array) {
-
-  // base case: if array is empty or has only one element, return the array itself.
-if (array.length <= 1) {
-  return array;
-}
-  // recursive case: reverse the sub-array, excluding the first element,
-  // and concatenate it with the first element
-  return reverseArr(array.slice(1)).concat(array[0]);
 };
 
 // 18. Create a new array with a given value and length.
 // buildList(0,5) // [0,0,0,0,0]
 // buildList(7,3) // [7,7,7]
 var buildList = function(value, length) {
-  // base case
-  if (length === 0) {
-    return [];
-  }
-  return buildList(value, length - 1).concat([value]);
 };
 
 // 19. Count the occurence of a value inside a list.
@@ -249,16 +238,6 @@ var countOccurrence = function(array, value) {
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
-  // Base case: if the array is empty, return an empty array
-  if (array.length === 0) {
-    return [];
-  }
-  // Apply the callback function to the first element of the array
-  // assign result of that callback to mappedValue
-  var mappedValue = callback(array[0]);
-  // recursively apply rMap to the rest of the array and
-  // concatenate the mapped value
-  return [mappedValue].concat(rMap(array.slice(1), callback));
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -294,51 +273,18 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
-  // base case: if n is 0 or 1, return n
-  if (n === 0 || n === 1) {
-    return n;
-  }
-  // base case: if n is negative, return null
-  if (n < 0) {
-    return null;
-  }
-  // recursive case: return the sum of the previous 2 Fibonacci numbers
-  return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
-  // base case: if the input array is empty, return an empty array
-  if (input.length === 0) {
-    return [];
-  }
-  // capitalize the first word in the input array and store it
-  var capitalizedWord = input[0].toUpperCase();
-  // recursively capitalize the rest of the words in the array
-  var restCapitalized = capitalizeWords(input.slice(1));
-  // concatenate the capitalized word with the rest of the words, capitalized
-  return [capitalizedWord].concat(restCapitalized);
 };
-
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
-  // base case: if the input array is empy, return an empty array
-  if (array.length === 0) {
-    return [];
-  }
-  // capitalize the first letter of the first word in the array, and store it
-  var capitalizedWord = array[0][0].toUpperCase() + array[0].slice(1);
-  // recursively capitalize the first letter of the rest of the words in the array
-  var restCapitalized = capitalizeFirst(array.slice(1));
-  // concatenate the capitalized word with rest of the words
-  return [capitalizedWord].concat(restCapitalized);
-
 };
-  
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
