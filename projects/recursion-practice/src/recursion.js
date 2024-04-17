@@ -262,6 +262,16 @@ var countOccurrence = function(array, value) {
 // 20. Write a recursive version of map.
 // rMap([1,2,3], timesTwo); // [2,4,6]
 var rMap = function(array, callback) {
+  // Base case: if the array is empty, return an empty array
+  if (array.length === 0) {
+    return [];
+  }
+  // Apply the callback function to the first element of the array
+  // assign result of that callback to mappedValue
+  var mappedValue = callback(array[0]);
+  // recursively apply rMap to the rest of the array and
+  // concatenate the mapped value
+  return [mappedValue].concat(rMap(array.slice(1), callback));
 };
 
 // 21. Write a function that counts the number of times a key occurs in an object.
@@ -297,18 +307,51 @@ var fibonacci = function(n) {
 // nthFibo(7); // 13
 // nthFibo(3); // 2
 var nthFibo = function(n) {
+  // base case: if n is 0 or 1, return n
+  if (n === 0 || n === 1) {
+    return n;
+  }
+  // base case: if n is negative, return null
+  if (n < 0) {
+    return null;
+  }
+  // recursive case: return the sum of the previous 2 Fibonacci numbers
+  return nthFibo(n - 1) + nthFibo(n - 2);
 };
 
 // 26. Given an array of words, return a new array containing each word capitalized.
 // var words = ['i', 'am', 'learning', 'recursion'];
 // capitalizedWords(words); // ['I', 'AM', 'LEARNING', 'RECURSION']
 var capitalizeWords = function(input) {
+  // base case: if the input array is empty, return an empty array
+  if (input.length === 0) {
+    return [];
+  }
+  // capitalize the first word in the input array and store it
+  var capitalizedWord = input[0].toUpperCase();
+  // recursively capitalize the rest of the words in the array
+  var restCapitalized = capitalizeWords(input.slice(1));
+  // concatenate the capitalized word with the rest of the words, capitalized
+  return [capitalizedWord].concat(restCapitalized);
 };
+
 
 // 27. Given an array of strings, capitalize the first letter of each index.
 // capitalizeFirst(['car', 'poop', 'banana']); // ['Car', 'Poop', 'Banana']
 var capitalizeFirst = function(array) {
+  // base case: if the input array is empy, return an empty array
+  if (array.length === 0) {
+    return [];
+  }
+  // capitalize the first letter of the first word in the array, and store it
+  var capitalizedWord = array[0][0].toUpperCase() + array[0].slice(1);
+  // recursively capitalize the first letter of the rest of the words in the array
+  var restCapitalized = capitalizeFirst(array.slice(1));
+  // concatenate the capitalized word with rest of the words
+  return [capitalizedWord].concat(restCapitalized);
+
 };
+  
 
 // 28. Return the sum of all even numbers in an object containing nested objects.
 // var obj1 = {
